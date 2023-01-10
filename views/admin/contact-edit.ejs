@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("../partials/head-contact")  %> 
+</head>
+<body>
+    
+    <%- include("../partials/nav")  %> 
+
+    <div class="container mt-3">
+        <form method="post" enctype="multipart/form-data" action="/admin/contacts/<%= contact.id %>?_csrf=<%= csrfToken %>">
+            <div class="row my-5 gx-5">
+
+                <div class="col-md-10">
+                        <input type="hidden" name="contactid" value="<%= contact.id %>">
+                        <input type="hidden" name="resim" value="<%= contact.resim %>">
+                        <div class="row mb-3">
+                            <label for="platform" class="col-sm-1 col-form-label">platform</label>
+                            <div class="col-sm-11">
+                                <input type="text" class="form-control" id="" name="platform" value="<%= contact.platform %>">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="platformLink" class="col-sm-1 col-form-label">platform link</label>
+                            <div class="col-sm-11">
+                                <textarea name="platformlink" class="form-control" rows="5"><%= contact.platformLink %></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <label for="resim" class="col-sm-1 col-form-label">Resim</label>
+                            <div class="col-sm-11">
+                                <img src="/static/images/<%= contact.resim %> " alt="" width="120">
+                                <input type="file" class="form-control" id="resim" name="resim">
+                            </div>
+                        </div>                    
+                        
+                        <div class="row mb-3">
+                            <div class="col-sm-11 offset-sm-1">
+                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                            </div>
+                        </div>
+                
+                </div>
+                
+                </div>
+
+            </div>
+        </form>
+    </div>
+       
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+</body>
+</html>
+
+
+

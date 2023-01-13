@@ -1,14 +1,14 @@
 <div class="card mb-3">
     <div class="row">
         <div class="col-md-4">
-            <img src="/static/images/<%=contacts.resim  %>" class="img-fluid" alt="">
+            <img src="/static/images/<%=contact.resim%>" class="img-fluid" alt="">
         </div>
         <div class="col-md-8">
             <div class="card-body">
                 <h5 class="card-title">
-                    <a style="text-decoration: none;" href="/contacts/"> <%= contacts.platform %> </a>
+                    <a href="<%=contact.platfomLink%>"><%=contact.platfomLinks%></a>  
                 </h5>
-                <p class="card-text"><%= contacts.platformLink %> </p>
+                <p class="card-text"><%=contact.platform%> </p>
             </div>
         </div>
     </div>

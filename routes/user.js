@@ -9,8 +9,12 @@ router.get("/blogs/:slug", userController.blogs_details);
 
 router.get("/blogs", userController.blog_list);
 
+router.get("/contacts", userController.contacts);
+
+router.get("/about", userController.about);
+
 router.get("/", userController.index);
  
-router.get("/contacts", userController.contacts);
-router.get("/about", userController.about);
+
+
 module.exports = router;

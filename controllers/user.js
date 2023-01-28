@@ -8,7 +8,7 @@ exports.contacts = async function(req, res) {
     console.log(req.cookies);
     
     try {
-        const contacts = await Contact.findAll();
+        const contacts = await Contact.findAll({ raw: true });
          res.render("users/contacts", {
             title: "İletişim Bilgileri",
             contacts:contacts

@@ -1,5 +1,5 @@
 const Blog = require("../models/blog");
-const Category = require("../models/category");
+const Category = require("../models/category");y
 const Contact = require("../models/contact");
 const About = require("../models/about");
 const { Op } = require("sequelize");

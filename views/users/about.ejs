@@ -1,34 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include("../partials/head")  %> 
+    <%- include("../partials/head-contact")  %> 
 </head>
 <body>
     
     <%- include("../partials/nav")  %> 
 
     <div class="container mt-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img src="/static/images/<%=about.resim  %>" class="img-fluid" alt="">
-                    </div>
-                    <div class="col-md-8">
-                        <h1 class="h3 mb-3"> <%= about.title %> </h1>
-                        
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <p><%- about.text %> </p>
-                    </div>
-                </div>
+        <div class="row">
+          
+            <div class="col-md-9">
+                <h1 class="h3 mb-3"> <%=title%> </h1>
+
+                <% if (about.length == 0) { %>
+                    <%- include("../partials/no-products")  %>
+                <% } %>
+
+                <% about.forEach(abouts => { %>
+                    <%- include("../partials/about-card", abouts)  %> 
+                <% }) %>
+
+                
+                              
             </div>
-        </div>        
+        </div>
     </div>
+
 </body>
 </html>
-
-
-

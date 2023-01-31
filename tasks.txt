@@ -5,9 +5,11 @@
 4-) Yukarıdaki işlemleri about içinde uygula. +
 5-) Contact-editin postunda sıkıntı var. onu düzelt. +
 6-) Contact-create de resimi veri tabanına kaydetmiyor.ama güncellerken resim koyuyor. +
-7-) user/about ve user/contacts sayfalarını düzenle adam akıllı bir şey yap.
-8-) Gereksiz kısımları çıkarma çalışması yap.
+7-) user/about ve user/contacts sayfalarını düzenle adam akıllı bir şey yap. +
+8-) Gereksiz kısımları çıkarma çalışması yap. + 
+9-) Contacts sayfasının çalışması gerek ama çalışmıyor onu çalışır hale getir. +
+10-) About Sayfasını çalıştırmaya çalış. + 
 
+11-) Admin Paneli Muhabbetlerini Gizlemeye Çalış.
+12-) UI çalışmaları yapılacak. 
 
-9-) Contacts sayfasının çalışması gerek ama çalışmıyor onu çalışır hale getir.
-10-) About Sayfasını çalıştırmaya çalış.

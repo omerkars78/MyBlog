@@ -6,23 +6,23 @@ const { Op } = require("sequelize");
 
 exports.contacts = async function (req, res) {
     try {
-      const contacts = await Contact.findAll({ raw: true });
+      const contacts = await Contact.findAll({ raw: true,attributes: ["id","platform","platformLink","resim"] }
+        );
       res.render("users/contacts", {
         title: "İletişim Bilgileri",
-        contacts,
+        contacts
       });
     } catch (error) {
       console.error(error);
     }
   };
 exports.about = async function (req, res) {
-  console.log(req.cookies);
-
+  cookies = req.cookies;
   try {
-    const about = await About.findAll();
+    const about = await About.findAll({raw: true, attributes: ["id","title","text","resim"]});
     if (about) {
       return res.render("users/about", {
-        title: "Hakkımda",
+        title: "Ömer Kars'ın Hayat Hikayesi",
         about: about,
       });
     }

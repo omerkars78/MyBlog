@@ -13,3 +13,14 @@
 11-) Admin Paneli Muhabbetlerini Gizlemeye Çalış.
 12-) UI çalışmaları yapılacak. 
 
+eski nav.ejs = {
+    <!-- 
+else { %>
+    <li class="nav-item">
+        <a href="/account/login" class="nav-link">Login</a>
+    </li>
+    <li class="nav-item">
+        <a href="/account/register" class="nav-link">Register</a>
+    </li>
+<% } -->
+}

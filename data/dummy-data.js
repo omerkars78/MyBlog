@@ -4,7 +4,7 @@ const slugField = require("../helpers/slugfield");
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const Role = require("../models/role");
-
+const About = require("../models/about");
 async function populate() {
     const count = await Category.count();
 
@@ -24,7 +24,9 @@ async function populate() {
             {rolename: "guest"},
         ]);
 
-        
+        const abouts  = await About.bulkCreate([
+            {title: "Ömer Kars'ın Hayat Hikayesi", text: "Ömer Kars'ın Hayat Hikayesi", resim: "1.jpeg"},
+        ]);
 
         await users[0].addRole(roles[0]);   // admin => sadikturan
         

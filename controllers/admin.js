@@ -275,7 +275,7 @@ exports.post_about_create = async function(req, res) {
 
         await About.create({
             title: title,
-            aciklama: aciklama,
+            text: aciklama,
             resim: resim
 
         });

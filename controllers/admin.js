@@ -279,7 +279,7 @@ exports.post_about_create = async function(req, res) {
             resim: resim
 
         });
-        res.redirect("/admin/aboust?action=create");
+        res.redirect("/admin/abouts?action=create");
     }
     catch(err) {
         let hataMesaji = "";
@@ -287,7 +287,7 @@ exports.post_about_create = async function(req, res) {
         if(err instanceof Error) {
             hataMesaji += err.message;
 
-            res.render("admin/about-create", {
+            res.render("/admin/about-create", {
                 title: "add about"
             });
         }
@@ -566,6 +566,25 @@ exports.get_contacts = async function(req, res) {
     }
 }
 
+exports.get_abouts = async function(req, res) {
+    const aboutid = req.session.aboutid;
+
+
+    try {
+        const abouts = await About.findAll({ 
+            attributes: ["id","title","text","resim"]
+        });
+        res.render("admin/about-list", {
+            title: "about list",
+            abouts: abouts,
+            action: req.query.action,
+            aboutid: req.query.contactid
+        });
+    }
+    catch(err) {
+        console.log(err);
+    }
+}
 exports.get_categories = async function(req, res) {
     try {
         const categories = await Category.findAll();

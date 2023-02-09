@@ -45,6 +45,7 @@ router.post("/categories/:categoryid",isAdmin, adminController.post_category_edi
  
 router.get("/blogs",isModerator,adminController.get_blogs);
 router.get("/contacts",isAdmin, adminController.get_contacts);
+router.get("/abouts",isAdmin, adminController.get_abouts);
 router.get("/categories",isAdmin, adminController.get_categories);
 
 router.get("/roles",isAdmin, adminController.get_roles);

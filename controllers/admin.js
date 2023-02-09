@@ -1,5 +1,6 @@
 const Blog = require("../models/blog");
 const Category = require("../models/category");
+const About = require("../models/about");
 const Role = require("../models/role");
 const User = require("../models/user");
 const Contact = require("../models/contact");
@@ -145,6 +146,20 @@ exports.get_contact_create = async function(req, res) {
     }
 }
 
+exports.get_about_create = async function(req, res) {
+    try {
+        const about = await About.findAll();
+
+        res.render("admin/about-create", {
+            title: "add about",
+            about: about
+        });
+    }
+    catch(err) {
+        console.log(err);
+    }
+}
+
 exports.post_blog_create = async function(req, res) {
     const baslik = req.body.baslik;
     const altbaslik = req.body.altbaslik;
@@ -239,6 +254,41 @@ exports.post_contact_create = async function(req, res) {
 
             res.render("admin/contact-create", {
                 title: "add contact"
+            });
+        }
+    }
+}
+exports.post_about_create = async function(req, res) {
+    const title = req.body.title;
+    const aciklama = req.body.aciklama;
+    let resim = "";
+
+    try {
+
+        if(req.file) {
+            resim = req.file.filename;
+
+            fs.unlink("./public/images/" + req.body.resim, err => {
+                console.log(err);
+            });
+        }
+
+        await About.create({
+            title: title,
+            aciklama: aciklama,
+            resim: resim
+
+        });
+        res.redirect("/admin/aboust?action=create");
+    }
+    catch(err) {
+        let hataMesaji = "";
+
+        if(err instanceof Error) {
+            hataMesaji += err.message;
+
+            res.render("admin/about-create", {
+                title: "add about"
             });
         }
     }

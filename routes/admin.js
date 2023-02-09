@@ -19,11 +19,13 @@ router.get("/category/delete/:categoryid",isAdmin,csrf, adminController.get_cate
 router.post("/category/delete/:categoryid",isAdmin, adminController.post_category_delete);
 
 router.get("/blog/create",isModerator,csrf, adminController.get_blog_create);
+router.get("/about/create",isAdmin,csrf, adminController.get_about_create); 
 router.get("/contact/create",isAdmin,csrf, adminController.get_contact_create);
 
 router.post("/categories/remove",isAdmin, adminController.get_category_remove);
 
 router.post("/blog/create",isModerator,csrf, imageUpload.upload.single("resim"), adminController.post_blog_create);
+router.post("/about/create",isAdmin,csrf, imageUpload.upload.single("resim"), adminController.post_about_create);
 router.post("/contact/create",isAdmin,csrf, imageUpload.upload.single("resim"), adminController.post_contact_create);
 
 router.get("/category/create",isAdmin,csrf, adminController.get_category_create);

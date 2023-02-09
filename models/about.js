@@ -4,7 +4,7 @@ const sequelize = require("../data/db");
 const About = sequelize.define("about", {
     title: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     text: {
         type: DataTypes.STRING,

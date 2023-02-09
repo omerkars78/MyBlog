@@ -87,6 +87,45 @@ exports.post_contact_delete = async function(req, res) {
     }
 }
 
+exports.get_about_delete = async function(req, res){
+
+    const aboutid = req.params.aboutid;
+    const userid = req.session.userid;
+    const isAdmin = req.session.roles.includes("admin");
+
+    try {
+        const about = await About.findOne({
+            where: isAdmin ? {id:aboutid} : {id: aboutid, userId: userid }
+        });
+
+        if(about) {
+            return res.render("admin/about-delete", {
+                title: "delete about",
+                about: about
+            });
+        }
+        res.redirect("/admin/abouts");
+    }
+    catch(err) {
+        console.log(err); 
+    }
+}
+
+exports.post_about_delete = async function(req, res) {
+    const aboutid = req.body.aboutid;
+    try {
+        const about = await About.findByPk(aboutid);
+        if(about) {
+            await about.destroy();
+            return res.redirect("/admin/abouts?action=delete");
+        }
+        res.redirect("/admin/abouts");
+    }
+    catch(err) {
+        console.log(err);
+    }
+}
+
 exports.get_category_delete = async function(req, res){
     const categoryid = req.params.categoryid;
 
@@ -374,6 +413,33 @@ exports.get_contact_edit = async function(req, res) {
     }
 }
 
+exports.get_about_edit = async function(req, res) {
+    const aboutid = req.params.aboutid;
+    
+
+    const isAdmin = req.session.roles.includes("admin");
+
+    try {
+        const about = await About.findOne({
+            where: isAdmin ? {id : aboutid} : { id: aboutid }
+            
+        });
+        
+        if(about) {
+            return res.render("admin/about-edit", {
+                
+                about: about.dataValues
+                
+            });
+        }
+
+        res.redirect("/admin/abouts");
+    }
+    catch(err) {
+        console.log(err);
+    }
+}
+
 exports.post_blog_edit = async function(req, res) {
     const blogid = req.body.blogid;
     const baslik = req.body.baslik;
@@ -465,6 +531,39 @@ exports.post_contact_edit = async function(req, res) {
             return res.redirect("/admin/contacts?action=edit&contactid=" + contactid);
         }
         res.redirect("/admin/contacts");
+    }
+    catch(err) {
+        console.log(err);
+    }
+}
+
+exports.post_about_edit = async function(req, res) {
+    const aboutid = req.body.aboutid;
+    const text = req.body.text;
+    const title = req.body.title;
+    let resim = req.body.resim;
+
+    if(req.file) {
+        resim = req.file.filename;
+
+        fs.unlink("./public/images/" + req.body.resim, err => {
+            console.log(err);
+        });
+    }
+    const isAdmin = req.session.roles.includes("admin");
+
+    try {
+        const about = await About.findOne({
+            where: isAdmin ? {id : aboutid} : { id: aboutid }
+        });
+        if(about) {
+            about.title = title;
+            about.text = text;
+            about.resim = resim;
+            await about.save();
+            return res.redirect("/admin/abouts?action=edit&aboutid=" + aboutid);
+        }
+        res.redirect("/admin/abouts");
     }
     catch(err) {
         console.log(err);

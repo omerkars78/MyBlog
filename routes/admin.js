@@ -14,6 +14,9 @@ router.post("/blog/delete/:blogid",isModerator, adminController.post_blog_delete
 router.get("/contact/delete/:contactid",isModerator,csrf,adminController.get_contact_delete);
 router.post("/contact/delete/:contactid",isModerator, adminController.post_contact_delete);
 
+router.get("/about/delete/:aboutid",isModerator,csrf,adminController.get_about_delete);
+router.post("/about/delete/:aboutid",isModerator, adminController.post_about_delete);
+
 router.get("/category/delete/:categoryid",isAdmin,csrf, adminController.get_category_delete);
 
 router.post("/category/delete/:categoryid",isAdmin, adminController.post_category_delete);
@@ -34,10 +37,12 @@ router.post("/category/create",isAdmin, adminController.post_category_create);
 
 router.get("/blogs/:blogid",isModerator,csrf, adminController.get_blog_edit);
 router.get("/contacts/:contactid",isModerator,csrf, adminController.get_contact_edit);
-
+router.get("/abouts/:aboutid",isModerator,csrf, adminController.get_about_edit);
 
 router.post("/blogs/:blogid",isModerator,csrf, imageUpload.upload.single("resim"), adminController.post_blog_edit);
 router.post("/contacts/:contactid",isAdmin,csrf, imageUpload.upload.single("resim"), adminController.post_contact_edit);
+router.post("/abouts/:aboutid",isAdmin,csrf, imageUpload.upload.single("resim"), adminController.post_about_edit);
+
 
 router.get("/categories/:categoryid",isAdmin,csrf, adminController.get_category_edit);
 

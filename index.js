@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const csurf = require("csurf");
+const config = require("./config");
 
 // node modules
 const path = require("path");
@@ -80,6 +81,12 @@ User.belongsToMany(Role, {through: "userRoles"});
     // await dummyData();
 })();
 
-app.listen(3000 ,function() {
-    console.log("listening on port 3000");
+// app.listen(3000 ,function() {
+//     console.log("listening on port 3000");
+// });
+config.db.getConnection((err, connection) => {  
+    if (err) {
+        console.log(err);
+        return;
+    }
 });
